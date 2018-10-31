@@ -1,6 +1,7 @@
 package me.lowlauch.lightworld;
 
 import java.io.File;
+import java.util.Random;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -12,9 +13,13 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.generator.ChunkGenerator;
+
+import net.md_5.bungee.api.ChatColor;
 
 public class Commands implements CommandExecutor
 {
+	
 	public boolean deleteWorld(File path)
 	{
 	      if(path.exists()) {
@@ -32,7 +37,7 @@ public class Commands implements CommandExecutor
 	
 	public boolean onCommand(CommandSender commandSender, Command command, String commandInput, String[] args)
 	{
-		if(commandInput.equalsIgnoreCase("lv"))
+		if(commandInput.equalsIgnoreCase("lw"))
 		{
 			if(args.length >= 1)
 			{
@@ -82,6 +87,26 @@ public class Commands implements CommandExecutor
 								wc.type(WorldType.FLAT);
 							    wc.environment(Environment.NORMAL);
 								world = Bukkit.createWorld(wc);
+								commandSender.sendMessage(Main.getPrefix() + args[1] + " wurde erfolgreich generiert!");
+							} else
+							{
+								commandSender.sendMessage(Main.getPrefix() + "Diese Welt existiert schon! Wenn du sie betreten willst, musst du §4/lv tp " + args[1] + "§f eingeben!");
+							}
+						}
+						
+						if(args[2].equalsIgnoreCase("void"))
+						{
+							World world = Bukkit.getWorld(args[1]);
+							if(world == null)
+							{
+								WorldCreator creator = new WorldCreator(args[1]);
+								creator.generator(new ChunkGenerator() {
+								    @Override
+								    public byte[] generate(World world, Random random, int x, int z) {
+								        return new byte[32768]; //Empty byte array
+								    }
+								});
+								world = creator.createWorld();
 								commandSender.sendMessage(Main.getPrefix() + args[1] + " wurde erfolgreich generiert!");
 							} else
 							{

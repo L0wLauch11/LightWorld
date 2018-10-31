@@ -5,6 +5,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Main extends JavaPlugin
 {
 	private static String prefix = "[§lLightWorld§r] ";
+	private static Main instance;
+	
+	public static Main getInstance()
+	{
+		return instance;
+	}
 	
 	public static String getPrefix()
 	{
@@ -13,7 +19,8 @@ public class Main extends JavaPlugin
 
 	public void onEnable()
 	{
-		this.getCommand("lv").setExecutor(new Commands());
+		instance = this;
+		this.getCommand("lw").setExecutor(new Commands());
 		this.getLogger().info("Enabled!");
 	}
 	
