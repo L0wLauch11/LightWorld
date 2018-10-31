@@ -1,0 +1,8 @@
+name: LightWorld
+main: me.lowlauch.lightworld.Main
+version: 1.0
+author: lowlauch
+commands:
+  lv:
+    description: standard LightWorld command
+    usage: /lv
