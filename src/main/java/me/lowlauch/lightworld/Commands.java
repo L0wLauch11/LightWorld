@@ -19,7 +19,6 @@ import net.md_5.bungee.api.ChatColor;
 
 public class Commands implements CommandExecutor
 {
-	
 	public boolean deleteWorld(File path)
 	{
 	      if(path.exists()) {
@@ -41,12 +40,20 @@ public class Commands implements CommandExecutor
 		{
 			if(args.length >= 1)
 			{
+				if(args[0].equalsIgnoreCase("help"))
+				{
+					commandSender.sendMessage(Main.getPrefix() + "Commands: /lw tp <world> [player] [x] [y] [z]");
+					commandSender.sendMessage(Main.getPrefix() + "          /lw create <world> [flat, void]");
+					commandSender.sendMessage(Main.getPrefix() + "          /lw delete <world>");
+					commandSender.sendMessage(Main.getPrefix() + "Commands: /lw info");
+				}
+				
 				if(args[0].equalsIgnoreCase("info"))
 				{
 					commandSender.sendMessage(Main.getPrefix() + "LightWorld-1.0 von L0wLauch11 uwu <3");
 				}
 				
-				if(args[0].equalsIgnoreCase("delete"))
+				if(args[0].equalsIgnoreCase("delete") && commandSender.isOp())
 				{
 				    World world = Bukkit.getWorld(args[1]);
 				    if(!world.equals(null))
@@ -60,6 +67,7 @@ public class Commands implements CommandExecutor
 				    }
 				}
 				
+<<<<<<< HEAD
 				if(args[0].equalsIgnoreCase("import"))
 				{
 					new WorldCreator(args[1]).createWorld();
@@ -67,6 +75,9 @@ public class Commands implements CommandExecutor
 				}
 				
 				if(args[0].equalsIgnoreCase("create") && args.length >= 2)
+=======
+				if(args[0].equalsIgnoreCase("create") && commandSender.isOp() && args.length >= 2)
+>>>>>>> f36e015920ab05f15e2540069ac2ebd94f024376
 				{
 					if(args.length == 2)
 					{
@@ -125,7 +136,7 @@ public class Commands implements CommandExecutor
 					commandSender.sendMessage(Main.getPrefix() + "Falsche Argumente!");
 				}
 				
-				if(args[0].equalsIgnoreCase("tp"))
+				if(args[0].equalsIgnoreCase("tp") && commandSender.isOp() || args[0].equalsIgnoreCase("tp") && !(commandSender instanceof Player))
 				{
 					if(args.length == 3)
 					{
