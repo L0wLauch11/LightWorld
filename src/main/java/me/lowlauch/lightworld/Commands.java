@@ -60,6 +60,12 @@ public class Commands implements CommandExecutor
 				    }
 				}
 				
+				if(args[0].equalsIgnoreCase("import"))
+				{
+					new WorldCreator(args[1]).createWorld();
+					commandSender.sendMessage(Main.getPrefix() + "Die Welt" + args[1] + "wurde geladen!");
+				}
+				
 				if(args[0].equalsIgnoreCase("create") && args.length >= 2)
 				{
 					if(args.length == 2)
@@ -103,7 +109,7 @@ public class Commands implements CommandExecutor
 								creator.generator(new ChunkGenerator() {
 								    @Override
 								    public byte[] generate(World world, Random random, int x, int z) {
-								        return new byte[32768]; //Empty byte array
+								        return new byte[32768*64]; //Empty byte array
 								    }
 								});
 								world = creator.createWorld();
