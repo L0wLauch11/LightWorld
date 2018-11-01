@@ -67,17 +67,14 @@ public class Commands implements CommandExecutor
 				    }
 				}
 				
-<<<<<<< HEAD
 				if(args[0].equalsIgnoreCase("import"))
 				{
 					new WorldCreator(args[1]).createWorld();
 					commandSender.sendMessage(Main.getPrefix() + "Die Welt" + args[1] + "wurde geladen!");
 				}
-				
-				if(args[0].equalsIgnoreCase("create") && args.length >= 2)
-=======
+
 				if(args[0].equalsIgnoreCase("create") && commandSender.isOp() && args.length >= 2)
->>>>>>> f36e015920ab05f15e2540069ac2ebd94f024376
+
 				{
 					if(args.length == 2)
 					{
