@@ -41,24 +41,24 @@ public class Commands implements CommandExecutor
                 if(args[0].equalsIgnoreCase("help"))
                 {
                     commandSender.sendMessage(Main.getPrefix() + "§nCommands§r:" +
-                            "§l/lw tp§r <world> [player] [x] [y] [z] - §oTeleportiert einen Spieler zu einer bestimmten Welt zu bestimmten Koordinaten§r\n" +
-                            "§l/lw create§r <world> [flat, void, normal] - §oErstellt eine neue Welt!§r\n" +
-                            "§l/lw delete§r <world> - §oLöscht die Angegebene Welt§r\n" +
-                            "§l/lw import§r <world> <void,flat,normal> - §oImportiert die angegebene Welt§r\n" +
+                            "§l/lw tp§r <world> [player] [x] [y] [z] - §oTeleports a player to a specific world at specific coordinatesn§r\n" +
+                            "§l/lw create§r <world> [flat, void, normal] - §oCreates a new world!§r\n" +
+                            "§l/lw delete§r <world> - §oDeletes the provided world§r\n" +
+                            "§l/lw import§r <world> <void,flat,normal> - §oImports the provided world§r\n" +
                             "§l/lw info§r - §oCredits :)§r" +
-                            "§l/lw autoimport§r <world> <void,flat,normal> - §oImportiert die angegebene Welt automatisch bei Server-Start (bzw. reload)§r");
+                            "§l/lw autoimport§r <world> <void,flat,normal> - §oImports the world automatically on server restart (or reload)§r");
                 }
 
                 if(args[0].equalsIgnoreCase("info"))
                 {
-                    commandSender.sendMessage(Main.getPrefix() + "LightWorld-1.0 von L0wLauch11 uwu <3");
+                    commandSender.sendMessage(Main.getPrefix() + "LightWorld by @L0wLauch11");
                 }
 
                 if(args[0].equalsIgnoreCase("autoimport"))
                 {
                     if(args.length == 1)
                     {
-                        commandSender.sendMessage(Main.getPrefix() + "Du musst auch eine Welt angeben!");
+                        commandSender.sendMessage(Main.getPrefix() + "You have to specify a world!");
                     } else
                     {
                         int getMapsCount = Main.getInstance().getConfig().getInt("lightworld.maps.count");
@@ -70,7 +70,7 @@ public class Commands implements CommandExecutor
                             Main.getInstance().getConfig().set("lightworld.maps.map" + mapId + "isVoid", true);
                         }
                         Main.getInstance().getConfig().set("lightworld.maps.count", mapId);
-                        commandSender.sendMessage(Main.getPrefix() + "Die Welt §l" + args[1] + "§r wird jetzt bei jedem restart oder reload automatisch geladen!");
+                        commandSender.sendMessage(Main.getPrefix() + "The world §l" + args[1] + "§r will be loaded on every restart automatically!");
                         Main.getInstance().saveConfig();
                         Main.getInstance().reloadConfig();
                     }
@@ -83,10 +83,10 @@ public class Commands implements CommandExecutor
                     {
                         Bukkit.getServer().unloadWorld(world, true);
                         deleteWorld(world.getWorldFolder());
-                        commandSender.sendMessage(Main.getPrefix() + "Lebewohl, " + args[1] + " D:");
+                        commandSender.sendMessage(Main.getPrefix() + "Farewell, " + args[1] + " D:");
                     } else
                     {
-                        commandSender.sendMessage(Main.getPrefix() + "Die Welt gibts nicht du kek!");
+                        commandSender.sendMessage(Main.getPrefix() + "This world doesn't exist!");
                     }
                 }
 
@@ -105,14 +105,14 @@ public class Commands implements CommandExecutor
                                 }
                             });
                             world = creator.createWorld();
-                            commandSender.sendMessage(Main.getPrefix() + args[1] + " wurde erfolgreich geladen (void)!");
+                            commandSender.sendMessage(Main.getPrefix() + args[1] + " was loaded sucessfully (void)!");
                         } else {
                             new WorldCreator(args[1]).createWorld();
-                            commandSender.sendMessage(Main.getPrefix() + "Die Welt " + args[1] + " wurde geladen!");
+                            commandSender.sendMessage(Main.getPrefix() + "The world " + args[1] + " was loaded!");
                         }
                     } else
                     {
-                        commandSender.sendMessage(Main.getPrefix() + "Falsche Argumente!");
+                        commandSender.sendMessage(Main.getPrefix() + "Wrong arguments!");
                     }
                 }
 
@@ -125,10 +125,10 @@ public class Commands implements CommandExecutor
                         {
                             WorldCreator wc = new WorldCreator(args[1]);
                             world = Bukkit.createWorld(new WorldCreator(args[1]));
-                            commandSender.sendMessage(Main.getPrefix() + args[1] + " wurde erfolgreich generiert!");
+                            commandSender.sendMessage(Main.getPrefix() + args[1] + " was generated sucessfully!");
                         } else
                         {
-                            commandSender.sendMessage(Main.getPrefix() + "Diese Welt existiert schon! Wenn du sie betreten willst, musst du §4/lv tp " + args[1] + "§f eingeben!");
+                            commandSender.sendMessage(Main.getPrefix() + "This World already exists! If you want to visit it, you must type §4/lv tp " + args[1] + "§f!");
                         }
                     }
 
@@ -143,10 +143,10 @@ public class Commands implements CommandExecutor
                                 wc.type(WorldType.FLAT);
                                 wc.environment(Environment.NORMAL);
                                 world = Bukkit.createWorld(wc);
-                                commandSender.sendMessage(Main.getPrefix() + args[1] + " wurde erfolgreich generiert!");
+                                commandSender.sendMessage(Main.getPrefix() + args[1] + " was generated sucessfully!");
                             } else
                             {
-                                commandSender.sendMessage(Main.getPrefix() + "Diese Welt existiert schon! Wenn du sie betreten willst, musst du §4/lv tp " + args[1] + "§f eingeben!");
+                                commandSender.sendMessage(Main.getPrefix() + "This World already exists! If you want to visit it, you must type §4/lv tp " + args[1] + "§f!");
                             }
                         }
 
@@ -163,10 +163,10 @@ public class Commands implements CommandExecutor
                                     }
                                 });
                                 world = creator.createWorld();
-                                commandSender.sendMessage(Main.getPrefix() + args[1] + " wurde erfolgreich generiert!");
+                                commandSender.sendMessage(Main.getPrefix() + args[1] + " was generated sucessfully!");
                             } else
                             {
-                                commandSender.sendMessage(Main.getPrefix() + "Diese Welt existiert schon! Wenn du sie betreten willst, musst du §4/lv tp " + args[1] + "§f eingeben!");
+                                commandSender.sendMessage(Main.getPrefix() + "This World already exists! If you want to visit it, you must type §4/lv tp " + args[1] + "§f!");
                             }
                         }
 
@@ -177,16 +177,16 @@ public class Commands implements CommandExecutor
                             {
                                 WorldCreator wc = new WorldCreator(args[1]);
                                 world = Bukkit.createWorld(new WorldCreator(args[1]));
-                                commandSender.sendMessage(Main.getPrefix() + args[1] + " wurde erfolgreich generiert!");
+                                commandSender.sendMessage(Main.getPrefix() + args[1] + " was generated sucessfully!");
                             } else
                             {
-                                commandSender.sendMessage(Main.getPrefix() + "Diese Welt existiert schon! Wenn du sie betreten willst, musst du §4/lv tp " + args[1] + "§f eingeben!");
+                                commandSender.sendMessage(Main.getPrefix() + "This World already exists! If you want to visit it, you must type §4/lv tp " + args[1] + "§f!");
                             }
                         }
                     }
                 } else if(args[0].equalsIgnoreCase("create"))
                 {
-                    commandSender.sendMessage(Main.getPrefix() + "Falsche Argumente!");
+                    commandSender.sendMessage(Main.getPrefix() + "Wrong arguments!");
                 }
 
                 if(args[0].equalsIgnoreCase("tp") && commandSender.isOp() || args[0].equalsIgnoreCase("tp") && !(commandSender instanceof Player))
@@ -197,8 +197,8 @@ public class Commands implements CommandExecutor
                         World world = Bukkit.getWorld(args[1]);
                         Location loc = new Location(world, 0, 50, 0);
                         p.teleport(loc);
-                        p.sendMessage(Main.getPrefix() + "Du wurdest zur Welt " + args[1] +  " teleportiert.");
-                        commandSender.sendMessage(Main.getPrefix() + "Du hast " + args[2] + " zur Welt " + args[1] +  " teleportiert.");
+                        p.sendMessage(Main.getPrefix() + "You were teleported to the world " + args[1] +  ".");
+                        commandSender.sendMessage(Main.getPrefix() + "You teleported " + args[2] + " to the world " + args[1] +  " teleportiert.");
                     }
 
                     if(args.length == 2)
@@ -207,7 +207,7 @@ public class Commands implements CommandExecutor
                         World world = Bukkit.getWorld(args[1]);
                         Location loc = new Location(world, 0, 50, 0);
                         p.teleport(loc);
-                        p.sendMessage(Main.getPrefix() + "Du hast dich zur Welt " + args[1] + " teleportiert.");
+                        p.sendMessage(Main.getPrefix() + "You were teleported to the world" + args[1] + ".");
                     }
 
                     if(args.length == 5)
@@ -216,7 +216,7 @@ public class Commands implements CommandExecutor
                         World world = Bukkit.getWorld(args[1]);
                         Location loc = new Location(world, Integer.parseInt(args[2]), Integer.parseInt(args[3]), Integer.parseInt(args[4]));
                         p.teleport(loc);
-                        p.sendMessage(Main.getPrefix() + "Du hast dich zur Welt " + args[1] + " bei den Koordinaten " + args[2] + " " + args[3] + " " + args[4] + " teleportiert.");
+                        p.sendMessage(Main.getPrefix() + "You were teleported to the world" + args[1] + " : " + args[2] + "x " + args[3] + "y " + args[4] + "z.");
                     }
 
                     if(args.length == 6)
@@ -225,13 +225,13 @@ public class Commands implements CommandExecutor
                         World world = Bukkit.getWorld(args[1]);
                         Location loc = new Location(world, Integer.parseInt(args[3]), Integer.parseInt(args[4]), Integer.parseInt(args[5]));
                         p.teleport(loc);
-                        p.sendMessage(Main.getPrefix() + "Du wurdest zur Welt " + args[1] + " bei den Koordinaten " + args[3] + " " + args[4] + " " + args[5] + " teleportiert.");
-                        commandSender.sendMessage(Main.getPrefix() + "Du hast " + args[2] + " zur Welt " + args[1] + " bei den Koordinaten " + args[3] + " " + args[4] + " " + args[5] + " teleportiert.");
+                        p.sendMessage(Main.getPrefix() + "You were teleported to the world " + args[1] + " : " + args[3] + "x " + args[4] + "y " + args[5] + "z.");
+                        commandSender.sendMessage(Main.getPrefix() + "You teleported " + args[2] + " to the world " + args[1] + " : " + args[3] + "x " + args[4] + "y " + args[5] + "z.");
                     }
                 }
             } else
             {
-                commandSender.sendMessage(Main.getPrefix() + "Falsche Argumente!");
+                commandSender.sendMessage(Main.getPrefix() + "Wrong arguments!");
             }
             return true;
         }
