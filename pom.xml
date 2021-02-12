@@ -1,14 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>me.lowlauch.lightworld</groupId>
-  <artifactId>LightWorld</artifactId>
-  <version>1.0</version>
-  <packaging>jar</packaging>
+    <groupId>me.lowlauch.lightworld</groupId>
+    <artifactId>LightWorld</artifactId>
+    <version>mc1.16.5</version>
+    <packaging>jar</packaging>
 
-  <name>LightWorld</name>
-  <url>http://maven.apache.org</url>
+
+    <name>LightWorld</name>
+    <url>http://maven.apache.org</url>
+
 
     <repositories>
         <repository>
@@ -17,25 +19,13 @@
         </repository>
     </repositories>
 
-    <properties>
-        <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
 
         <!--Spigot API-->
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.8-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!--Bukkit API-->
-        <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>1.8-R0.1-SNAPSHOT</version>
+            <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
